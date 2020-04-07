@@ -857,7 +857,9 @@ class _CalendarState<T extends EventInterface> extends State<CalendarCarousel<T>
       if (widget.weekFormat) {
         setState(() {
           this._pageNum = page;
-          this._targetDate = this._weeks[page].first;
+          this._targetDate = this._dates[page];
+          _startWeekday = _dates[page].weekday - firstDayOfWeek;
+          _endWeekday = _lastDayOfWeek(_dates[page]).weekday - firstDayOfWeek;
         });
 
         _controller.animateToPage(page,
